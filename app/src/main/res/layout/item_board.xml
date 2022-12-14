@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -9,17 +8,18 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:constraint_referenced_ids="img_item_board, tv_item_title_board, tv_item_description_board, btn_item_start"
+        app:constraint_referenced_ids="av_item_board, tv_item_title_board, tv_item_description_board"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:id="@+id/img_item_board"
-        android:contentDescription="@string/todo"/>
+        android:id="@+id/av_item_board"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -41,12 +41,5 @@
         android:id="@+id/tv_item_description_board"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start"
-        android:id="@+id/btn_item_start"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

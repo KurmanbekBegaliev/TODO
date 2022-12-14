@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.todo.R
 import com.example.todo.databinding.ItemBoardBinding
 
-class BoardAdapter : Adapter<BoardAdapter.BoardViewHolder>() {
+class BoardAdapter :
+    Adapter<BoardAdapter.BoardViewHolder>() {
 
     val titleList = listOf("Notes", "Contacts", "End")
     val desList = listOf("Add something for notes", "View all contacts", "The end")
-    val imgList = listOf(
-        R.drawable.notes,
-        R.drawable.contacts,
-        R.drawable.end
+    val animationList = listOf(
+        R.raw.animation_notes,
+        R.raw.animation_contacts,
+        R.raw.animation_end
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
@@ -28,13 +29,14 @@ class BoardAdapter : Adapter<BoardAdapter.BoardViewHolder>() {
 
     override fun getItemCount(): Int = titleList.size
 
-    inner class BoardViewHolder(private val binding: ItemBoardBinding) : ViewHolder(binding.root) {
+    inner class BoardViewHolder(val binding: ItemBoardBinding) : ViewHolder(binding.root) {
         fun onBind(position: Int) {
-            binding.imgItemBoard.setImageResource(imgList[position])
+            binding.avItemBoard.setAnimation(animationList[position])
             binding.tvItemTitleBoard.text = titleList[position]
             binding.tvItemDescriptionBoard.text = desList[position]
         }
 
     }
+
 
 }

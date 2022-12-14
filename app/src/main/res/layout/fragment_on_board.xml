@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager2.widget.ViewPager2 xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/board_pager"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.board.OnBoardFragment">
 
-</androidx.viewpager2.widget.ViewPager2>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/board_pager"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/on_board_container"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:id="@+id/on_board_container"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/black"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/in_one"
+                android:contentDescription="@string/todo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@color/black"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/in_two"
+                android:contentDescription="@string/todo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/black"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/in_three"
+                android:contentDescription="@string/todo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:text="@string/start"
+        android:background="@drawable/btn_start_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/board_pager"
+        android:visibility="visible"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

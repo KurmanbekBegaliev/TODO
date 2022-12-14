@@ -53,4 +53,14 @@ dependencies {
 
     //splash screen
     implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
+    //lottie animation
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //ViewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //CircleIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
 }
