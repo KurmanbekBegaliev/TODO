@@ -1,4 +1,4 @@
-package com.example.todo.ui.board
+package com.example.todo.ui.fragment.board
 
 
 import android.os.Bundle
