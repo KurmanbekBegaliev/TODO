@@ -1,74 +1,46 @@
 package com.example.todo.ui.fragment.board
 
-
 import android.os.Bundle
 import android.view.View
-import android.view.View.*
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.Fragment
 import com.example.todo.R
 import com.example.todo.base.BaseFragment
 import com.example.todo.databinding.FragmentOnBoardBinding
+import com.example.todo.ui.fragment.board.screens.FirstScreen
+import com.example.todo.ui.fragment.board.screens.SecondScreen
+import com.example.todo.ui.fragment.board.screens.ThridScreen
+import com.google.android.material.tabs.TabLayoutMediator
 
-class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBinding::inflate) {
+class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBinding::inflate),
+    OnBtnStartClick{
 
     private lateinit var adapter: BoardAdapter
 
     override fun setupUI() {
-        adapter = BoardAdapter()
+
+        val fragmentList = listOf<Fragment>(
+            FirstScreen(),
+            SecondScreen(),
+            ThridScreen()
+        )
+
+        adapter = BoardAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
         binding.boardPager.adapter = adapter
+
+        TabLayoutMediator(binding.tabLayout, binding.boardPager) {tab, position ->
+            tab.setIcon(R.drawable.ellipse_2)
+        }.attach()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnStart.setOnClickListener {
-            controller.navigate(R.id.noteFragment)
-        }
-
-        binding.boardPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                changeSet()
-            }
-
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-                changeSet()
-            }
-        })
     }
 
-    private fun changeSet() {
-        when (binding.boardPager.currentItem) {
-            0->{
-                binding.inOne.setBackgroundColor(requireContext().getColor(R.color.main_color))
-                binding.inTwo.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.inThree.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.btnStart.visibility = GONE
-            }
-
-            1-> {
-                binding.inOne.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.inTwo.setBackgroundColor(requireContext().getColor(R.color.main_color))
-                binding.inThree.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.btnStart.visibility = GONE
-            }
-
-            2-> {
-                binding.inOne.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.inTwo.setBackgroundColor(requireContext().getColor(R.color.gray))
-                binding.inThree.setBackgroundColor(requireContext().getColor(R.color.main_color))
-                binding.btnStart.visibility = VISIBLE
-            }
-        }
+    override fun onBtnStartClick() {
+        controller.navigate(R.id.noteFragment)
     }
+
 
 }

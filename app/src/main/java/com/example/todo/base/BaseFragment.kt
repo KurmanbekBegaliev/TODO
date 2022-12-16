@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SimpleAdapter.ViewBinder
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -22,7 +21,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate : Inflate<VB>)
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
+         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
