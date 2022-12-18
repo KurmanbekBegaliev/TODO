@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.todo.R
 import com.example.todo.base.BaseFragment
 import com.example.todo.databinding.FragmentOnBoardBinding
+import com.example.todo.ui.App
 import com.example.todo.ui.fragment.board.screens.FirstScreen
 import com.example.todo.ui.fragment.board.screens.SecondScreen
 import com.example.todo.ui.fragment.board.screens.ThridScreen
@@ -39,7 +40,8 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
     }
 
     override fun onBtnStartClick() {
-        controller.navigate(R.id.noteFragment)
+        controller.navigateUp()
+        App.prefs.saveBoardState()
     }
 
 

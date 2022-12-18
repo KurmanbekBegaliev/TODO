@@ -8,4 +8,9 @@
     <string name="todo">TODO</string>
     <string name="notes">Notes</string>
     <string name="start">Start</string>
+    <string name="add_something_for_notes">Add something for notes</string>
+    <string name="contacts">Contacts</string>
+    <string name="view_all_contacts">View all contacts</string>
+    <string name="end">End</string>
+    <string name="the_end">The end</string>
 </resources>
