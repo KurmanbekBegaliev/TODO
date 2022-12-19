@@ -34,11 +34,6 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun onBtnStartClick() {
         controller.navigateUp()
         App.prefs.saveBoardState()
