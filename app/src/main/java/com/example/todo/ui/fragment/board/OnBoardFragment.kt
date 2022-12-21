@@ -15,7 +15,7 @@ class OnBoardFragment : BaseFragment<FragmentOnBoardBinding>(FragmentOnBoardBind
         binding.boardPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.boardPager) {tab, position ->
-            tab.setIcon(R.drawable.ellipse_2)
+            tab.setIcon(R.drawable.tab_selector)
         }.attach()
 
     }
