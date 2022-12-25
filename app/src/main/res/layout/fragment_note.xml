@@ -23,17 +23,16 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="25dp"
-        android:background="#00ffffff"
+        android:src="@drawable/ic_add_btn"
+        android:backgroundTint="#FEBA07"
+        android:background="#FEBA07"
         android:clickable="true"
-        android:src="@drawable/floating_action_button"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="645dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/todo"
@@ -41,6 +40,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_note"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"

@@ -1,15 +1,23 @@
 package com.example.todo.ui.fragment.addnote
 
+import android.os.Bundle
+import android.view.View
 import com.example.todo.base.BaseFragment
 import com.example.todo.databinding.FragmentAddNoteBinding
 import com.example.todo.model.NoteModel
 import com.example.todo.ui.App
 
-
 class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBinding::inflate) {
     override fun setupUI() {
         saveNote()
         back()
+
+//        binding.edtAddTitle.text = arguments?.getString(NoteFragment.KEY_FOR_ADD_TITLE)
+//        binding.edtAddDescription.text = arguments?.getString(NoteFragment.KEY_FOR_ADD_DES)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun saveNote() {
@@ -27,5 +35,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
             controller.navigateUp()
         }
     }
+
+
 
 }

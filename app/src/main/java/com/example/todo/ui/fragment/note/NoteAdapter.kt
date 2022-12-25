@@ -7,16 +7,25 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.todo.databinding.ItemNoteBinding
 import com.example.todo.model.NoteModel
+import com.example.todo.ui.App
 
 
-class NoteAdapter : Adapter<NoteAdapter.NoteViewHolder>() {
-    private var list = ArrayList<NoteModel>()
+class NoteAdapter(private val listener: NoteListener) : Adapter<NoteAdapter.NoteViewHolder>() {
+
+
+    private val list : ArrayList<NoteModel> = ArrayList()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list : ArrayList<NoteModel>) {
-        this.list = list
+    fun setList(list : List<NoteModel>) {
+        this.list.addAll(list)
         notifyDataSetChanged()
     }
+
+    fun deleteNote(position : Int) {
+        App.db.getDao().deleteNote(list.removeAt(position))
+        notifyItemRemoved(position)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(ItemNoteBinding.inflate(LayoutInflater.from(parent.context),
@@ -25,16 +34,25 @@ class NoteAdapter : Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.onBind(list[position])
+        holder.itemView.setOnClickListener {
+            listener.upDateNote(list[position].title.toString(),
+                list[position].description.toString())
+        }
     }
 
     override fun getItemCount() = list.size
 
-
-    inner class NoteViewHolder(private val binding : ItemNoteBinding) :
-        ViewHolder(binding.root) {
+    class NoteViewHolder(private val binding: ItemNoteBinding) : ViewHolder(binding.root) {
         fun onBind(model: NoteModel) {
             binding.tvItemTitle.text = model.title
             binding.tvItemDescription.text = model.description
         }
+
     }
+
+    interface NoteListener {
+        fun upDateNote(title : String, des : String)
+    }
+
+
 }
