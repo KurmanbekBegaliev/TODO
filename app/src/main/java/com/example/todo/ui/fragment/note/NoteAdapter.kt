@@ -12,7 +12,6 @@ import com.example.todo.ui.App
 
 class NoteAdapter(private val listener: NoteListener) : Adapter<NoteAdapter.NoteViewHolder>() {
 
-
     private val list : ArrayList<NoteModel> = ArrayList()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -34,9 +33,10 @@ class NoteAdapter(private val listener: NoteListener) : Adapter<NoteAdapter.Note
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.onBind(list[position])
+
         holder.itemView.setOnClickListener {
-            listener.upDateNote(list[position].title.toString(),
-                list[position].description.toString())
+            listener.upDateNote(list[position])
+            deleteNote(holder.adapterPosition)
         }
     }
 
@@ -46,12 +46,12 @@ class NoteAdapter(private val listener: NoteListener) : Adapter<NoteAdapter.Note
         fun onBind(model: NoteModel) {
             binding.tvItemTitle.text = model.title
             binding.tvItemDescription.text = model.description
+            binding.tvItemTime.text = model.dateTime
         }
-
     }
 
     interface NoteListener {
-        fun upDateNote(title : String, des : String)
+        fun upDateNote(model: NoteModel)
     }
 
 

@@ -9,5 +9,6 @@ data class NoteModel(
     @PrimaryKey(autoGenerate = true)
     val id : Int? = null,
     val title : String?= null,
-    val description : String?= null
+    val description : String?= null,
+    val dateTime : String?= null
 ) : Serializable

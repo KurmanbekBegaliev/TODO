@@ -2,7 +2,7 @@ package com.example.todo.ui.fragment.note
 
 
 import android.app.AlertDialog
-import androidx.core.os.bundleOf
+import android.os.Bundle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
@@ -17,8 +17,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
     private lateinit var adapter: NoteAdapter
 
     companion object {
-        const val KEY_FOR_ADD_TITLE = "TITLE"
-        const val KEY_FOR_ADD_DES = "DESCRIPTION"
+
     }
 
     override fun setupUI() {
@@ -75,13 +74,11 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
         builder.create().show()
     }
 
-    override fun upDateNote(title : String, des : String) {
+    override fun upDateNote(model : NoteModel) {
 //        App.db.getDao().upDateNote(model)
-        controller.navigate(R.id.addNoteFragment,
-            bundleOf(
-                KEY_FOR_ADD_TITLE to title,
-                KEY_FOR_ADD_DES to des
-            ))
+        val bundle = Bundle()
+        bundle.putSerializable("key", model)
+        controller.navigate(R.id.addNoteFragment, bundle)
     }
 
 

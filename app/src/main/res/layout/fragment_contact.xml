@@ -12,7 +12,7 @@
         android:scrollbars="vertical"
         android:scrollbarSize="10dp"
         android:scrollbarStyle="insideInset"
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
