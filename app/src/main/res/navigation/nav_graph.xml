@@ -21,4 +21,9 @@
         android:name="com.example.todo.ui.fragment.board.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.todo.ui.fragment.contact.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
 </navigation>

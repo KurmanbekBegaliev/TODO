@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/noteFragment"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="@string/notes"/>
+
+    <item android:id="@+id/contactFragment"
+        android:icon="@drawable/ic_baseline_person"
+        android:title="@string/contacts"/>
+</menu>

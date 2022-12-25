@@ -13,4 +13,6 @@
     <string name="view_all_contacts">View all contacts</string>
     <string name="end">End</string>
     <string name="the_end">The end</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
 </resources>
