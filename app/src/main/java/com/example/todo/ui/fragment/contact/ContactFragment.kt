@@ -20,6 +20,13 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(FragmentContactBind
     private var arrayContacts = arrayListOf<ContactsModel>()
     private lateinit var adapter: ContactsAdapter
 
+
+    companion object {
+        const val READ_CONTACTS = Manifest.permission.READ_CONTACTS
+        const val PERMISSION_REQUEST = 200
+    }
+
+
     override fun setupUI() {
         initContacts()
 
@@ -53,10 +60,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(FragmentContactBind
                 }
             }
             cursor?.close()
-
         }
-
-
     }
 
     override fun onRequestPermissionsResult(
@@ -80,19 +84,18 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(FragmentContactBind
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(permission),
                 PERMISSION_REQUEST
             )
+            initContacts()
             false
         } else true
     }
 
-    companion object {
-        const val READ_CONTACTS = Manifest.permission.READ_CONTACTS
-        const val PERMISSION_REQUEST = 200
-    }
 
+
+    //Call Contact Button Listener
     override fun callListener(position: Int) {
         val number = arrayContacts[position].number.toString()
         val intent = Intent(Intent.ACTION_DIAL)
-        intent.setData(Uri.parse("tel:$number"))
+        intent.data = Uri.parse("tel:$number")
         try {
             startActivity(intent)
         } catch (e : Exception) {
@@ -100,6 +103,8 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(FragmentContactBind
         }
     }
 
+
+    // Whatsapp Contact Button Listener
     override fun waListener(position: Int) {
         val number = arrayContacts[position].number.toString()
         val intent = Intent(Intent.ACTION_VIEW)

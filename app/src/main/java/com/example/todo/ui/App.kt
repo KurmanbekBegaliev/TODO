@@ -18,6 +18,7 @@ class App : Application() {
         preferences = this.applicationContext
             .getSharedPreferences("settings", MODE_PRIVATE)
         prefs = Prefs(preferences)
+
         db = NoteDatabase.invoke(this)
     }
 

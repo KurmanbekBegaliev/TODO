@@ -16,9 +16,6 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private lateinit var adapter: NoteAdapter
 
-    companion object {
-
-    }
 
     override fun setupUI() {
         adapter = NoteAdapter(this)

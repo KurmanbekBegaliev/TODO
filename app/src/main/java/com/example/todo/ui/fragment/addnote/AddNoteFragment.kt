@@ -15,17 +15,13 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
 
     override fun setupUI() {
         getUpdateArguments()
-        setDateTime()
+        getDateTime()
         saveNote()
         back()
 
     }
 
-    private fun setDateTime() {
-        val sdf = SimpleDateFormat("dd.M.yyyy  hh:mm", Locale.ROOT)
-        val currentDate = sdf.format(Date())
-        binding.tvAddTime.text = currentDate.toString()
-    }
+
 
     private fun getUpdateArguments() {
         val bundle : Bundle? = arguments
@@ -55,6 +51,13 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
         binding.btnCancelAddNote.setOnClickListener {
             controller.navigateUp()
         }
+    }
+
+
+    private fun getDateTime() {
+        val sdf = SimpleDateFormat("dd.M.yyyy  hh:mm", Locale.ROOT)
+        val currentDate = sdf.format(Date())
+        binding.tvAddTime.text = currentDate.toString()
     }
 
 

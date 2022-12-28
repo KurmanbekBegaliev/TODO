@@ -21,13 +21,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(500)
+        Thread.sleep(100)
         installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initNavController()
+        setAppBarConfiguration()
+        isBoardShowed()
     }
 
 
@@ -36,8 +38,17 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         controller = navHostFragment.navController
+    }
+
+    //Shared Preferences
+    private fun isBoardShowed() {
+         if (!App.prefs.isBoardShow()) {
+            controller.navigate(R.id.onBoardFragment)
+        }
+    }
 
 
+    private fun setAppBarConfiguration() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.noteFragment,
@@ -49,10 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(controller, appBarConfiguration)
         binding.bottomNav.setupWithNavController(controller)
-
-        if (!App.prefs.isBoardShow()) {
-            controller.navigate(R.id.onBoardFragment)
-        }
 
         controller.addOnDestinationChangedListener{_, destination, _ ->
             val list : ArrayList<Int> = arrayListOf()
