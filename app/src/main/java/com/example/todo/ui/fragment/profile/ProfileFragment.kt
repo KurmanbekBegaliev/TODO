@@ -40,4 +40,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         }
     }
 
+    // Попытался сделать это через Activity Result API но никак не заработало
+
 }
