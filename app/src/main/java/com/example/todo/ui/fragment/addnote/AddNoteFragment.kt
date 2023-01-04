@@ -1,7 +1,5 @@
 package com.example.todo.ui.fragment.addnote
 
-import android.os.Bundle
-import android.view.View
 import com.example.todo.base.BaseFragment
 import com.example.todo.databinding.FragmentAddNoteBinding
 import com.example.todo.model.NoteModel
@@ -11,30 +9,30 @@ import java.util.*
 
 class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBinding::inflate) {
 
-    private lateinit var model: NoteModel
+    private var model: NoteModel? = null
 
     override fun setupUI() {
-        getUpdateArguments()
         getDateTime()
         saveNote()
         back()
 
     }
 
+    override fun setupObserver() {
+        super.setupObserver()
+        getUpdateArguments()
+    }
+
 
 
     private fun getUpdateArguments() {
-        val bundle : Bundle? = arguments
-        bundle?.let {
-            model = it.getSerializable("key") as NoteModel
-            binding.edtAddTitle.setText(model.title.toString())
-            binding.edtAddDescription.setText(model.description.toString())
+        model = AddNoteFragmentArgs.fromBundle(requireArguments()).argModel as NoteModel
+        model?.let {
+            binding.edtAddTitle.setText(it.title.toString())
+            binding.edtAddDescription.setText(it.description.toString())
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     private fun saveNote() {
         binding.btnConfirmAddNote.setOnClickListener {

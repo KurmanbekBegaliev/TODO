@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/sort_id_desc"
+        android:title="@string/news"/>
+
+    <item android:id="@+id/sort_id"
+        android:title="@string/olds"/>
+
+    <item android:id="@+id/sort_title"
+        android:title="@string/a_z"/>
+
+    <item android:id="@+id/sort_title_desc"
+        android:title="@string/z_a"/>
+
+</menu>

@@ -20,6 +20,13 @@ class NoteAdapter(private val listener: NoteListener) : Adapter<NoteAdapter.Note
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun sortList(list : List<NoteModel>) {
+        this.list.clear()
+        this.list.addAll(list)
+        notifyDataSetChanged()
+    }
+
     fun deleteNote(position : Int) {
         App.db.getDao().deleteNote(list.removeAt(position))
         notifyItemRemoved(position)

@@ -1,8 +1,9 @@
 package com.example.todo.ui.fragment.note
 
-
 import android.app.AlertDialog
-import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
@@ -12,7 +13,7 @@ import com.example.todo.model.NoteModel
 import com.example.todo.ui.App
 
 class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate),
-    NoteAdapter.NoteListener {
+    NoteAdapter.NoteListener, PopupMenu.OnMenuItemClickListener {
 
     private lateinit var adapter: NoteAdapter
 
@@ -25,12 +26,45 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     override fun setupObserver() {
         super.setupObserver()
-
-
         binding.floatingActionButton.setOnClickListener {
-            controller.navigate(R.id.addNoteFragment)
+            val mod = NoteModel(title = "", description = "")
+            controller.navigate(NoteFragmentDirections.actionNoteFragmentToAddNoteFragment(mod))
+        }
+
+        binding.btnSort.setOnClickListener {
+            showMenu(binding.btnSort)
         }
         deleteNote()
+    }
+
+    private fun showMenu(v: View) {
+        PopupMenu(requireActivity(), v).apply {
+            setOnMenuItemClickListener(this@NoteFragment)
+            inflate(R.menu.sort_menu)
+            show()
+        }
+    }
+
+    override fun onMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.sort_id_desc-> {
+                adapter.sortList(App.db.getDao().getAllNote() as ArrayList<NoteModel>)
+                true
+            }
+            R.id.sort_id -> {
+                adapter.sortList(App.db.getDao().getAllNoteDesc() as ArrayList<NoteModel>)
+                true
+            }
+            R.id.sort_title -> {
+                adapter.sortList(App.db.getDao().getAllNoteSortedAlp() as ArrayList<NoteModel>)
+                true
+            }
+            R.id.sort_title_desc -> {
+                adapter.sortList(App.db.getDao().getAllNoteSortedAlpDesc() as ArrayList<NoteModel>)
+                true
+            }
+            else -> false
+        }
     }
 
 
@@ -72,10 +106,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
     }
 
     override fun upDateNote(model : NoteModel) {
-//        App.db.getDao().upDateNote(model)
-        val bundle = Bundle()
-        bundle.putSerializable("key", model)
-        controller.navigate(R.id.addNoteFragment, bundle)
+        controller.navigate(NoteFragmentDirections.actionNoteFragmentToAddNoteFragment(model))
     }
 
 

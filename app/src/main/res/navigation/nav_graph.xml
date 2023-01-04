@@ -5,17 +5,34 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/noteFragment">
 
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.example.todo.ui.fragment.note.NoteFragment"
+        android:label="fragment_note"
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment">
+
+            <argument android:name="argModel"
+                app:nullable="true"
+                app:argType="com.example.todo.model.NoteModel"/>
+
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="com.example.todo.ui.fragment.addnote.AddNoteFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
-    <fragment
-        android:id="@+id/noteFragment"
-        android:name="com.example.todo.ui.fragment.note.NoteFragment"
-        android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_add_note">
+
+        <argument android:name="argModel"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.example.todo.model.NoteModel"/>
+    </fragment>
+
     <fragment
         android:id="@+id/onBoardFragment"
         android:name="com.example.todo.ui.fragment.board.OnBoardFragment"
@@ -26,4 +43,9 @@
         android:name="com.example.todo.ui.fragment.contact.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.todo.ui.fragment.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

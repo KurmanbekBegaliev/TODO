@@ -3,6 +3,8 @@ package com.example.todo.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -52,7 +54,8 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.noteFragment,
-                R.id.contactFragment
+                R.id.contactFragment,
+                R.id.profileFragment
             )
         )
         setSupportActionBar(binding.toolbar)
@@ -65,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             val list : ArrayList<Int> = arrayListOf()
             list.add(R.id.noteFragment)
             list.add(R.id.contactFragment)
+            list.add(R.id.profileFragment)
 
             if (list.contains(destination.id)) {
                 binding.bottomNav.isVisible = true
@@ -72,6 +76,15 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNav.isGone = true
             }
         }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+
     }
 
 

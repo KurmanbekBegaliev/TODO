@@ -13,6 +13,15 @@ interface NoteDao {
     @Query("SELECT * FROM noteModel ORDER BY id DESC")
     fun getAllNote() : List<NoteModel>
 
+    @Query("SELECT * FROM noteModel ORDER BY id")
+    fun getAllNoteDesc() : List<NoteModel>
+
+    @Query("SELECT * FROM noteModel ORDER BY title")
+    fun getAllNoteSortedAlp() : List<NoteModel>
+
+    @Query("SELECT * FROM noteModel ORDER BY title DESC")
+    fun getAllNoteSortedAlpDesc() : List<NoteModel>
+
     @Insert
     fun addNote(model: NoteModel)
 

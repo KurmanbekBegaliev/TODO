@@ -15,4 +15,9 @@
     <string name="the_end">The end</string>
     <string name="name">Name</string>
     <string name="number">Number</string>
+    <string name="profile">Profile</string>
+    <string name="news">Сначала новые</string>
+    <string name="olds">Сначала старые</string>
+    <string name="a_z">По A-Z</string>
+    <string name="z_a">По Z-A</string>
 </resources>
